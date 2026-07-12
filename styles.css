@@ -1,0 +1,964 @@
+/* Estilos CSS para el Gestor del Calendario de Ciclos Formativos 2026-2027 */
+/* Incorpora diseño premium, soporte para temas (claro/oscuro), */
+/* micro-animaciones, leyendas interactivas y optimización para impresión PDF. */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Paleta de colores - Modo Claro */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-sidebar: rgba(255, 255, 255, 0.7);
+  --border-color: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-inverse: #ffffff;
+  --accent-color: #3b82f6;
+  --accent-hover: #1d4ed8;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-blur: blur(12px);
+
+  /* Colores de los estados del calendario (Versión Pastel Premium) */
+  --c-inici-fi: #faf2b2;      /* Amarillo brillante (Inicio/Fin curso) */
+  --c-inici-fe: #fed7aa;      /* Naranja suave (Inici FE Març 2n / Maig 1r) */
+  --c-pfc: #e9d5ff;           /* Violeta pastel (PFC) */
+  --c-avaluacions: #fecaca;   /* Rojo suave (Avaluacions) */
+  --c-exams: #fde047;         /* Amarillo/Naranja ámbar (Exàmens) */
+  --c-inici-pi: #bbf7d0;      /* Verde suave (Inici PI 2n) */
+  
+  --c-festiu: #cbd5e1;        /* Gris medio (Festivo oficial/local) */
+  --c-vacances: #ccfbf1;      /* Turquesa/Té suave (Vacaciones) */
+  --c-weekend: #ccfbf1;       /* Turquesa/Té suave (Fin de semana) */
+  --c-lectiu: #ffffff;        /* Blanco (Día lectivo ordinario) */
+  --c-pre-post: #f1f5f9;      /* Gris muy claro (Fuera de curso) */
+  
+  --c-text-festiu: #ef4444;   /* Texto rojo para festivos */
+}
+
+[data-theme="dark"] {
+  /* Paleta de colores - Modo Oscuro */
+  --bg-primary: #0b0f19;
+  --bg-secondary: #1e293b;
+  --bg-sidebar: rgba(15, 23, 42, 0.7);
+  --border-color: #334155;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-inverse: #0f172a;
+  --accent-color: #60a5fa;
+  --accent-hover: #93c5fd;
+  --glass-bg: rgba(15, 23, 42, 0.6);
+  --glass-border: rgba(15, 23, 42, 0.4);
+
+  /* Colores de los estados en Modo Oscuro (Mapeo de contraste alto) */
+  --c-inici-fi: #854d0e;      /* Amarillo-marrón oscuro */
+  --c-inici-fe: #7c2d12;      /* Naranja rojizo oscuro */
+  --c-pfc: #581c87;           /* Púrpura oscuro */
+  --c-avaluacions: #7f1d1d;   /* Rojo sangre oscuro */
+  --c-exams: #713f12;         /* Ámbar oscuro */
+  --c-inici-pi: #14532d;      /* Verde bosque oscuro */
+  
+  --c-festiu: #334155;        /* Gris pizarra */
+  --c-vacances: #115e59;      /* Verde azulado oscuro */
+  --c-weekend: #064e3b;       /* Verde esmeralda muy oscuro */
+  --c-lectiu: #1e293b;        /* Color fondo normal */
+  --c-pre-post: #0f172a;      /* Negro-azul oscuro */
+  
+  --c-text-festiu: #fca5a5;   /* Texto rojo pastel */
+}
+
+/* Reset y Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-icon {
+  font-size: 1.8rem;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+header h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Botones y UI */
+.btn {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+  color: var(--text-main);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background-color: var(--bg-primary);
+  border-color: var(--text-muted);
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: var(--text-inverse);
+  border-color: var(--accent-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.btn-success {
+  background-color: #10b981;
+  color: #ffffff !important;
+  border-color: #10b981;
+}
+
+.btn-success:hover {
+  background-color: #059669;
+  border-color: #059669;
+}
+
+.btn-icon {
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* Contenedor Principal */
+.app-container {
+  display: flex;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Panel Lateral (Sidebar) */
+aside.sidebar {
+  width: 320px;
+  background-color: var(--bg-sidebar);
+  backdrop-filter: var(--glass-blur);
+  border-right: 1px solid var(--border-color);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-main);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+/* Contadores / Estadísticas */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.stat-box {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--bg-primary);
+  border-radius: 0.5rem;
+  border: 1px dashed var(--border-color);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.stat-warning {
+  color: #ef4444 !important;
+}
+
+.stat-success {
+  color: #10b981 !important;
+}
+
+.target-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.4rem;
+  border-radius: 9999px;
+  background-color: var(--border-color);
+  margin-top: 0.25rem;
+}
+
+/* Grupo de Filtros y Configuración */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.select-input, .text-input {
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+  color: var(--text-main);
+  width: 100%;
+}
+
+.select-input:focus, .text-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+/* Vista Toggle */
+.view-toggle-container {
+  display: flex;
+  background-color: var(--bg-primary);
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+}
+
+.view-btn {
+  flex: 1;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: none;
+  border: none;
+  padding: 0.4rem;
+  border-radius: 0.375rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.view-btn.active {
+  background-color: var(--bg-secondary);
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Lista de Festivos */
+.holiday-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.holiday-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  background-color: var(--bg-primary);
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.375rem;
+  border-left: 3px solid var(--c-festiu);
+}
+
+.holiday-item span.date {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.holiday-item span.name {
+  color: var(--text-muted);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 130px;
+}
+
+.delete-holiday-btn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  padding: 0.1rem;
+}
+
+.delete-holiday-btn:hover {
+  color: #b91c1c;
+}
+
+/* Leyenda Interactiva */
+.legend-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.15s ease;
+}
+
+.legend-item:hover {
+  background-color: var(--bg-primary);
+}
+
+.legend-color {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.color-inici-fi { background-color: var(--c-inici-fi); }
+.color-inici-fe { background-color: var(--c-inici-fe); }
+.color-pfc { background-color: var(--c-pfc); }
+.color-avaluacions { background-color: var(--c-avaluacions); }
+.color-exams { background-color: var(--c-exams); }
+.color-inici-pi { background-color: var(--c-inici-pi); }
+.color-festiu { background-color: var(--c-festiu); border-left: 2px solid var(--c-text-festiu); }
+.color-vacances { background-color: var(--c-vacances); }
+.color-weekend { background-color: var(--c-weekend); }
+.color-lectiu { background-color: var(--c-lectiu); border: 1px solid var(--border-color); }
+
+/* Calendario Principal (Contenedor Central) */
+main.calendar-view {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.calendar-title-text h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.calendar-title-text p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Contenedor del Grid de Tabla */
+.table-wrapper {
+  flex: 1;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  overflow: auto;
+  box-shadow: var(--shadow-sm);
+}
+
+table.calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* Cabeceras de Tabla */
+table.calendar-table th {
+  background-color: var(--bg-primary);
+  color: var(--text-muted);
+  font-weight: 600;
+  padding: 0.65rem 0.5rem;
+  border-bottom: 2px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+table.calendar-table th.col-concept {
+  text-align: left;
+  padding-left: 1rem;
+  min-width: 160px;
+}
+
+table.calendar-table th.col-quinzena {
+  width: 90px;
+}
+
+/* Celdas de la Tabla */
+table.calendar-table td {
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  height: 2.5rem;
+  transition: background-color 0.15s ease;
+}
+
+/* Columna de Mes */
+table.calendar-table th.col-month {
+  width: 90px;
+  min-width: 90px;
+  text-align: center;
+}
+
+table.calendar-table td.cell-month {
+  font-weight: 700;
+  color: var(--accent-color);
+  background-color: var(--bg-primary) !important;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+  text-align: center;
+  border-left: 2px solid var(--border-color) !important;
+  border-right: 2px solid var(--border-color) !important;
+  border-top: 2px solid var(--border-color) !important;
+  border-bottom: 2px solid var(--border-color) !important;
+}
+
+/* Fila de inicio de mes - borde superior en todas las celdas */
+table.calendar-table tr.month-start-row td:not(.cell-month) {
+  border-top: 2px solid var(--text-main) !important;
+}
+[data-theme="dark"] table.calendar-table tr.month-start-row td:not(.cell-month) {
+  border-top: 2px solid var(--border-color) !important;
+}
+
+
+/* Columna Conceptos */
+td.cell-concept {
+  text-align: left;
+  font-weight: 500;
+  padding-left: 1rem !important;
+  cursor: pointer;
+}
+
+td.cell-concept:hover {
+  background-color: var(--bg-primary);
+}
+
+.concept-text {
+  display: inline-block;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.edit-indicator {
+  opacity: 0;
+  float: right;
+  color: var(--accent-color);
+  font-size: 0.75rem;
+  transition: opacity 0.2s;
+  margin-top: 2px;
+}
+
+td.cell-concept:hover .edit-indicator {
+  opacity: 1;
+}
+
+/* Celdas de Fechas */
+.date-cell {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+}
+
+.date-cell:hover {
+  filter: brightness(0.95);
+}
+
+[data-theme="dark"] .date-cell:hover {
+  filter: brightness(1.15);
+}
+
+.date-number {
+  font-size: 0.95rem;
+}
+
+.day-name-tooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: #334155;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 5px;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.75rem;
+}
+
+.date-cell:hover .day-name-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Tipos de Celda de Fecha (Colores) */
+.cell-lectiu { background-color: var(--c-lectiu); }
+.cell-weekend { background-color: var(--c-weekend); }
+.cell-pre-post { background-color: var(--c-pre-post); color: var(--text-muted); opacity: 0.55; cursor: not-allowed; }
+.cell-no-lectiu { background-color: var(--c-pre-post); color: var(--text-muted); opacity: 0.8; cursor: pointer; transition: opacity 0.2s, background-color 0.2s; }
+.cell-no-lectiu:hover { background-color: var(--border-color); opacity: 1; }
+.cell-vacances { background-color: var(--c-vacances); font-weight: 400; }
+
+.cell-festiu { 
+  background-color: var(--c-festiu); 
+  color: var(--c-text-festiu); 
+  font-weight: 700;
+  border-left: 2px solid var(--c-text-festiu) !important;
+}
+
+.cell-inici-fi { background-color: var(--c-inici-fi); font-weight: 700; }
+.cell-inici-fe { background-color: var(--c-inici-fe); }
+.cell-pfc { background-color: var(--c-pfc); }
+.cell-avaluacions { background-color: var(--c-avaluacions); }
+.cell-exams { background-color: var(--c-exams); }
+.cell-inici-pi { background-color: var(--c-inici-pi); }
+
+.cell-quinzena {
+  font-weight: 600;
+  color: var(--text-muted);
+  border-left: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cell-quinzena:hover {
+  background-color: var(--bg-primary);
+  filter: brightness(0.95);
+}
+
+.cell-quinzena-active {
+  color: var(--accent-color);
+  background-color: var(--bg-primary);
+}
+
+.cell-quinzena-special {
+  background-color: var(--c-inici-fe);
+  color: var(--text-main);
+}
+
+/* Sombreado dinámico de Quinzenes */
+tr.fortnight-even-row td.cell-lectiu {
+  background-color: rgba(59, 130, 246, 0.06) !important; /* Tono azul extremadamente suave */
+}
+[data-theme="dark"] tr.fortnight-even-row td.cell-lectiu {
+  background-color: rgba(96, 165, 250, 0.05) !important; /* Tono azul suave oscuro */
+}
+
+/* Doble línea de separación de quincenas en columnas individuales */
+table.calendar-table td.fortnight-divider-q1 {
+  border-bottom: 3.5px double var(--accent-color) !important;
+}
+table.calendar-table td.fortnight-divider-q2 {
+  border-bottom: 3.5px double var(--accent-color) !important;
+}
+
+/* Destacar clases en hover dinámico de la leyenda */
+.highlight-type {
+  outline: 2px solid var(--accent-color);
+  outline-offset: -2px;
+  animation: pulse-border 1.5s infinite;
+}
+
+@keyframes pulse-border {
+  0% { outline-color: var(--accent-color); }
+  50% { outline-color: transparent; }
+  100% { outline-color: var(--accent-color); }
+}
+
+/* Modal de Edición de Celda/Semana */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  width: 420px;
+  max-width: 90%;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-20px);
+  transition: transform 0.2s ease;
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.modal-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.close-modal-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.close-modal-btn:hover {
+  color: var(--text-main);
+}
+
+.modal-body .form-group {
+  margin-bottom: 1rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+/* Opciones de tipo de día coloridas */
+.color-choice-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.color-choice-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  background-color: var(--bg-secondary);
+  color: var(--text-main);
+  cursor: pointer;
+  text-align: left;
+}
+
+.color-choice-btn:hover {
+  background-color: var(--bg-primary);
+}
+
+.color-choice-btn.selected {
+  border-color: var(--accent-color);
+  outline: 1.5px solid var(--accent-color);
+}
+
+.color-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+/* Controles flotantes en móviles */
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  
+  aside.sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    max-height: 400px;
+  }
+  
+  main.calendar-view {
+    padding: 1rem;
+  }
+}
+
+/* Estilos de Impresión - PDF en A4 Horizontal */
+@media print {
+  html, body, .app-container {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    position: static !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-size: 7.5pt !important;
+  }
+  
+  header, aside.sidebar, .calendar-header .btn, .edit-indicator, .view-toggle-container, .header-controls {
+    display: none !important;
+  }
+  
+  main.calendar-view {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+  
+  .calendar-header {
+    margin-bottom: 10px !important;
+    display: block !important;
+    text-align: center;
+  }
+  
+  .calendar-title-text h2 {
+    font-size: 14pt !important;
+    margin-bottom: 4px;
+    color: #000000 !important;
+  }
+
+  .calendar-title-text p {
+    font-size: 9pt !important;
+    color: #555555 !important;
+  }
+
+  .table-wrapper {
+    border: 1px solid #000000 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+  
+  table.calendar-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    font-size: 7.5pt !important;
+  }
+  
+  table.calendar-table th, table.calendar-table td {
+    border: 1px solid #555555 !important;
+    padding: 3px !important;
+    height: 18pt !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  table.calendar-table th {
+    background-color: #f1f5f9 !important;
+    color: #000000 !important;
+  }
+
+  table.calendar-table tr.month-start-row td:not(.cell-month) {
+    border-top: 2px solid #000000 !important;
+  }
+  
+  table.calendar-table td.cell-month {
+    border: 2px solid #000000 !important;
+    background-color: #f1f5f9 !important;
+    color: #000000 !important;
+    font-weight: bold !important;
+  }
+  
+  /* Mantener colores en la impresión */
+  .cell-lectiu { background-color: #ffffff !important; }
+  .cell-weekend { background-color: #f0fdf4 !important; }
+  .cell-pre-post { background-color: #f8fafc !important; color: #94a3b8 !important; opacity: 0.5; }
+  .cell-no-lectiu { background-color: #f8fafc !important; color: #94a3b8 !important; opacity: 0.8; }
+  .cell-vacances { background-color: #ccfbf1 !important; }
+  .cell-festiu { background-color: #cbd5e1 !important; color: #ef4444 !important; font-weight: bold !important; }
+  .cell-inici-fi { background-color: #fef08a !important; font-weight: bold !important; }
+  .cell-inici-fe { background-color: #fed7aa !important; }
+  .cell-pfc { background-color: #e9d5ff !important; }
+  .cell-avaluacions { background-color: #fecaca !important; }
+  .cell-exams { background-color: #fde047 !important; }
+  .cell-inici-pi { background-color: #bbf7d0 !important; }
+  
+  .cell-quinzena {
+    background-color: #ffffff !important;
+    color: #555555 !important;
+  }
+  
+  /* Forzar corte de páginas limpio si es necesario */
+  tr {
+    page-break-inside: avoid !important;
+  }
+
+  /* Leyenda exclusiva para impresión */
+  .print-only-legend {
+    display: block !important;
+    margin-top: 25px !important;
+    page-break-inside: avoid !important;
+  }
+  
+  .print-only-legend h3 {
+    font-size: 11pt !important;
+    font-weight: bold !important;
+    margin-bottom: 8px !important;
+    color: #000000 !important;
+    border-bottom: 1px solid #000000 !important;
+    padding-bottom: 4px !important;
+  }
+  
+  .print-legend-grid {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 8px !important;
+    margin-top: 8px !important;
+  }
+  
+  .print-legend-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 7.5pt !important;
+    color: #000000 !important;
+  }
+  
+  .print-legend-color {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+    border: 1px solid #000000 !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Colores de la leyenda impresa */
+  .print-legend-color.color-inici-fi { background-color: #fef08a !important; }
+  .print-legend-color.color-inici-fe { background-color: #fed7aa !important; }
+  .print-legend-color.color-pfc { background-color: #e9d5ff !important; }
+  .print-legend-color.color-avaluacions { background-color: #fecaca !important; }
+  .print-legend-color.color-exams { background-color: #fde047 !important; }
+  .print-legend-color.color-inici-pi { background-color: #bbf7d0 !important; }
+  .print-legend-color.color-festiu { background-color: #cbd5e1 !important; border: 1px solid #ef4444 !important; }
+  .print-legend-color.color-vacances { background-color: #ccfbf1 !important; }
+  .print-legend-color.color-weekend { background-color: #f0fdf4 !important; }
+  .print-legend-color.color-lectiu { background-color: #ffffff !important; border: 1px solid #cccccc !important; }
+}

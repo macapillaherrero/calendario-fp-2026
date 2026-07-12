@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ca" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendari FP 2026-2027 | Gestor Oficial</title>
+  
+  <!-- FontAwesome para Iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Hojas de Estilo -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Cabecera Principal -->
+  <header>
+    <div class="logo-container">
+      <div class="logo-icon"><i class="fa-solid fa-calendar-days"></i></div>
+      <div>
+        <h1>Calendari Curs 2026-2027</h1>
+        <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">
+          Cicles Formatius de Formació Professional | IES Camp de Morvedre
+        </div>
+      </div>
+    </div>
+    
+    <div class="header-controls">
+      <!-- Alternancia de Tema -->
+      <button class="btn btn-icon" id="theme-toggle" title="Canviar de tema">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+      
+      <!-- Importar / Exportar Datos -->
+      <button class="btn" id="export-json" title="Exportar dades com a JSON">
+        <i class="fa-solid fa-download"></i> Exportar
+      </button>
+      <button class="btn" id="import-trigger" title="Importar dades JSON">
+        <i class="fa-solid fa-upload"></i> Importar
+      </button>
+      <input type="file" id="import-file" accept=".json" style="display: none;">
+      
+      <!-- Guardar en PDF / Imprimir -->
+      <button class="btn btn-primary" id="print-pdf" title="Imprimir / Guardar com a PDF">
+        <i class="fa-solid fa-file-pdf"></i> Imprimir / PDF
+      </button>
+      <button class="btn btn-success" id="export-publish-js" title="Exportar dades configurades per a la versió de consulta pública">
+        <i class="fa-solid fa-share-nodes"></i> Exportar per a Publicar
+      </button>
+    </div>
+  </header>
+
+  <!-- Contenedor de la Aplicación -->
+  <div class="app-container">
+  
+    <!-- Barra Lateral de Configuración -->
+    <aside class="sidebar">
+      
+      <!-- Selector de Vista (1er Año, 2n Año, Unificado) -->
+      <div class="card">
+        <h3><i class="fa-solid fa-layer-group"></i> Selecció de Curs</h3>
+        <div class="view-toggle-container">
+          <button class="view-btn active" data-view="unified">Unificat</button>
+          <button class="view-btn" data-view="1er">1er Any</button>
+          <button class="view-btn" data-view="2n">2n Any</button>
+        </div>
+        <div style="margin-top: 0.75rem; border-top: 1px solid var(--border-color); padding-top: 0.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <input type="checkbox" id="toggle-fortnight-shading" checked style="width: auto; cursor: pointer;">
+            <label for="toggle-fortnight-shading" style="cursor: pointer; font-size: 0.75rem; user-select: none; font-weight: 500; color: var(--text-muted);">
+              Destacar quinzenes visualment
+            </label>
+          </div>
+          <div id="shading-base-container" style="margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem; padding-left: 1.25rem;">
+            <span style="font-size: 0.7rem; color: var(--text-muted); font-weight: 500;">Projectar dies segons:</span>
+            <label style="font-size: 0.7rem; display: flex; align-items: center; gap: 0.2rem; cursor: pointer; color: var(--text-muted);">
+              <input type="radio" name="shading-base" value="1er" checked style="width: auto; cursor: pointer;"> 1er
+            </label>
+            <label style="font-size: 0.7rem; display: flex; align-items: center; gap: 0.2rem; cursor: pointer; color: var(--text-muted);">
+              <input type="radio" name="shading-base" value="2n" style="width: auto; cursor: pointer;"> 2n
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Contador de Días Lectivos -->
+      <div class="card">
+        <h3><i class="fa-solid fa-calculator"></i> Dies Lectius</h3>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-number" id="lective-count">179</div>
+            <div class="stat-label">Dies Lectius totals</div>
+            <div class="target-badge" id="lective-badge">Objectiu: 179 dies</div>
+          </div>
+        </div>
+        <div id="stats-breakdown" style="margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
+          <h4 style="font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.3rem; text-transform: uppercase; letter-spacing: 0.03em;">
+            <i class="fa-solid fa-square-poll-vertical" style="color: var(--accent-color); font-size: 0.7rem;"></i> Desglós Lectius
+          </h4>
+          <div class="breakdown-list" id="lectivos-breakdown-list" style="display: flex; flex-direction: column; gap: 0.1rem;"></div>
+          
+          <h4 style="font-size: 0.8rem; font-weight: 600; margin-top: 0.85rem; margin-bottom: 0.5rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.3rem; text-transform: uppercase; letter-spacing: 0.03em;">
+            <i class="fa-solid fa-ban" style="color: var(--text-muted); font-size: 0.7rem;"></i> Desglós No Lectius
+          </h4>
+          <div class="breakdown-list" id="no-lectivos-breakdown-list" style="display: flex; flex-direction: column; gap: 0.1rem;"></div>
+        </div>
+      </div>
+      
+      <!-- Configuración de Festivos Municipales/Locales -->
+      <div class="card">
+        <h3><i class="fa-solid fa-map-pin"></i> Festius Locals (3 max)</h3>
+        <div class="holiday-list" id="holidays-list-container">
+          <!-- Se cargan dinámicamente -->
+        </div>
+        
+        <div style="margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
+          <h4 style="font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-muted);">Afegir Festiu Local</h4>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="date" id="new-holiday-date" class="text-input" style="padding: 0.35rem;" min="2026-09-01" max="2027-06-30">
+            <button class="btn btn-primary" id="add-holiday-btn" style="padding: 0.35rem 0.65rem;" title="Afegir dia">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Leyenda de Colores Interactiva -->
+      <div class="card">
+        <h3><i class="fa-solid fa-palette"></i> Llegenda</h3>
+        <div class="legend-list">
+          <div class="legend-item" data-type="inici-fi">
+            <div class="legend-color color-inici-fi"></div>
+            <span>Inici / Fi curs</span>
+          </div>
+          <div class="legend-item" data-type="inici-fe">
+            <div class="legend-color color-inici-fe"></div>
+            <span>Inici FE</span>
+          </div>
+          <div class="legend-item" data-type="pfc">
+            <div class="legend-color color-pfc"></div>
+            <span>PI</span>
+          </div>
+          <div class="legend-item" data-type="avaluacions">
+            <div class="legend-color color-avaluacions"></div>
+            <span>Avaluacions</span>
+          </div>
+          <div class="legend-item" data-type="exams">
+            <div class="legend-color color-exams"></div>
+            <span>Exàmens</span>
+          </div>
+          <div class="legend-item" data-type="inici-pi">
+            <div class="legend-color color-inici-pi"></div>
+            <span>Inici PI 2n</span>
+          </div>
+          <div class="legend-item" data-type="festiu">
+            <div class="legend-color color-festiu"></div>
+            <span>Festiu (Oficial / Local)</span>
+          </div>
+          <div class="legend-item" data-type="vacances">
+            <div class="legend-color color-vacances"></div>
+            <span>Vacances (Nadal / Pasqua)</span>
+          </div>
+          <div class="legend-item" data-type="weekend">
+            <div class="legend-color color-weekend"></div>
+            <span>Caps de setmana</span>
+          </div>
+          <div class="legend-item" data-type="lectiu">
+            <div class="legend-color color-lectiu"></div>
+            <span>Lectiu Ordinari</span>
+          </div>
+        </div>
+      </div>
+      
+    </aside>
+
+    <!-- Panel de Calendario Principal -->
+    <main class="calendar-view">
+      <div class="calendar-header">
+        <div class="calendar-title-text">
+          <h2 id="calendar-title">Planificació de Curs 2026-2027</h2>
+          <p>Fes clic sobre els conceptes per a editar-los o sobre els dies de la setmana per a canviar el seu estat.</p>
+        </div>
+        <button class="btn" id="reset-calendar-btn" title="Restablir calendari per defecte">
+          <i class="fa-solid fa-rotate-left"></i> Restablir
+        </button>
+      </div>
+
+      <!-- Cuadrícula Principal del Calendario -->
+      <div class="table-wrapper">
+        <table class="calendar-table" id="calendar-grid">
+          <thead>
+            <tr>
+              <th class="col-month">Mes</th>
+              <th class="col-concept">Conceptes</th>
+              <th>Dilluns</th>
+              <th>Dimarts</th>
+              <th>Dimecres</th>
+              <th>Dijous</th>
+              <th>Divendres</th>
+              <th>Dissabte</th>
+              <th>Diumenge</th>
+              <th class="col-quinzena" id="th-q2">Quinzena 2n</th>
+              <th class="col-quinzena" id="th-q1">Quinzena 1er</th>
+            </tr>
+          </thead>
+          <tbody id="calendar-body">
+            <!-- Se carga dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- Leyenda exclusiva para impresión (oculta en pantalla) -->
+      <div class="print-only-legend" style="display: none;">
+        <h3>Llegenda</h3>
+        <div class="print-legend-grid">
+          <div class="print-legend-item"><div class="print-legend-color color-inici-fi"></div><span>Inici / Fi curs</span></div>
+          <div class="print-legend-item"><div class="print-legend-color color-inici-fe"></div><span>Inici FE (FCT)</span></div>
+          <div class="print-legend-item"><div class="print-legend-color color-pfc"></div><span>PI (Projecte)</span></div>
+          <div class="print-legend-item"><div class="print-legend-color color-avaluacions"></div><span>Avaluacions</span></div>
+          <div class="print-legend-item"><div class="print-legend-color color-exams"></div><span>Exàmens</span></div>
+          <div class="print-legend-item"><div class="print-legend-color color-inici-pi"></div><span>Inici PI 2n</span></div>
+          <div class="print-legend-item"><div class="print-legend-color color-festiu"></div><span>Festiu (Oficial / Local)</span></div>
+          <div class="print-legend-item"><div class="print-legend-color color-vacances"></div><span>Vacances (Nadal / Pasqua)</span></div>
+          <div class="print-legend-item"><div class="print-legend-color color-weekend"></div><span>Caps de setmana</span></div>
+          <div class="print-legend-item"><div class="print-legend-color color-lectiu"></div><span>Lectiu Ordinari</span></div>
+        </div>
+      </div>
+    </main>
+    
+  </div>
+
+  <!-- Modal de Edición de Concepto / Evento Semanal -->
+  <div class="modal-overlay" id="edit-week-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">Editar Setmana</h3>
+        <button class="close-modal-btn" id="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        
+        <!-- Edición de Concepto -->
+        <div class="form-group">
+          <label for="modal-concept-input">Concepte de la Setmana</label>
+          <input type="text" id="modal-concept-input" class="text-input" placeholder="Ex: Exàmens 1er, Avaluacions...">
+        </div>
+        
+        <!-- Opciones rápidas de Tipo de Concepto -->
+        <div class="form-group">
+          <label>Assignar Tipus a la Setmana (per defecte)</label>
+          <div class="color-choice-group">
+            <button class="color-choice-btn" data-type="exams">
+              <div class="color-dot color-exams"></div> Exàmens
+            </button>
+            <button class="color-choice-btn" data-type="avaluacions">
+              <div class="color-dot color-avaluacions"></div> Avaluació
+            </button>
+            <button class="color-choice-btn" data-type="inici-fe">
+              <div class="color-dot color-inici-fe"></div> Inici FE
+            </button>
+            <button class="color-choice-btn" data-type="pfc">
+              <div class="color-dot color-pfc"></div> PFC
+            </button>
+            <button class="color-choice-btn" data-type="lectiu">
+              <div class="color-dot color-lectiu"></div> Normal / Netejar
+            </button>
+          </div>
+        </div>
+
+        <!-- Edición de Quincenas -->
+        <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
+          <div class="form-group" style="flex: 1;">
+            <label for="modal-q1-input">Quinzena 1er Any</label>
+            <input type="text" id="modal-q1-input" class="text-input" placeholder="Ex: 1, Ex 1er, FE...">
+          </div>
+          <div class="form-group" style="flex: 1;">
+            <label for="modal-q2-input">Quinzena 2n Any</label>
+            <input type="text" id="modal-q2-input" class="text-input" placeholder="Ex: 1, Ex 2n, FE...">
+          </div>
+        </div>
+
+        <!-- Propagar tipo a días -->
+        <div class="form-group" style="flex-direction: row; align-items: center; gap: 0.5rem; margin-top: 1rem;">
+          <input type="checkbox" id="modal-propagate-days" style="width: auto; cursor: pointer;">
+          <label for="modal-propagate-days" style="cursor: pointer; font-size: 0.8rem; user-select: none;">
+            Aplicar aquest color/tipus a tots els dies laborables (dilluns a divendres) d'aquesta setmana
+          </label>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button class="btn" id="btn-cancel-modal">Cancel·lar</button>
+        <button class="btn btn-primary" id="btn-save-modal">Guardar Setmana</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Edición de Día de Fecha Individual -->
+  <div class="modal-overlay" id="edit-day-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="day-modal-title">Editar Dia</h3>
+        <button class="close-modal-btn" id="close-day-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;" id="day-modal-desc">
+          Canvia la tipologia d'aquest dia per a modificar la seua consideració lectiva i color en la cuadrícula.
+        </p>
+
+        <!-- Selección de tipo de día -->
+        <div class="form-group">
+          <label>Tipus de Dia</label>
+          <div class="color-choice-group" id="day-type-choices">
+            <button class="color-choice-btn" data-daytype="lectiu">
+              <div class="color-dot color-lectiu"></div> Lectiu Ordinari
+            </button>
+            <button class="color-choice-btn" data-daytype="festiu">
+              <div class="color-dot color-festiu"></div> Festiu
+            </button>
+            <button class="color-choice-btn" data-daytype="vacances">
+              <div class="color-dot color-vacances"></div> Vacances
+            </button>
+            <button class="color-choice-btn" data-daytype="inici-fi">
+              <div class="color-dot color-inici-fi"></div> Inici/Fi curs
+            </button>
+            <button class="color-choice-btn" data-daytype="inici-fe">
+              <div class="color-dot color-inici-fe"></div> Inici FE (FCT)
+            </button>
+            <button class="color-choice-btn" data-daytype="pfc">
+              <div class="color-dot color-pfc"></div> PFC
+            </button>
+            <button class="color-choice-btn" data-daytype="avaluacions">
+              <div class="color-dot color-avaluacions"></div> Avaluació
+            </button>
+            <button class="color-choice-btn" data-daytype="exams">
+              <div class="color-dot color-exams"></div> Exàmens
+            </button>
+            <button class="color-choice-btn" data-daytype="inici-pi">
+              <div class="color-dot color-inici-pi"></div> Inici PI 2n
+            </button>
+          </div>
+        </div>
+
+        <!-- Nombre del Festivo si aplica -->
+        <div class="form-group" id="day-holiday-name-group" style="display: none;">
+          <label for="day-holiday-name-input">Nom del Festiu / Motiu</label>
+          <input type="text" id="day-holiday-name-input" class="text-input" placeholder="Ex: Falla Local, Sant Josep...">
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button class="btn" id="btn-cancel-day-modal">Cancel·lar</button>
+        <button class="btn btn-primary" id="btn-save-day-modal">Guardar Dia</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
