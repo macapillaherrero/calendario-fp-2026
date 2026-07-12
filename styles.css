@@ -1010,6 +1010,11 @@ table.calendar-table td.fortnight-divider-q2 {
   .cell-exams { background-color: #fde047 !important; }
   .cell-inici-pi { background-color: #bbf7d0 !important; }
   
+  /* Desactivar el sombreado de quincenas en la impresión para evitar recuadros con bordes extraños */
+  tr.fortnight-even-row td.cell-lectiu {
+    background-color: #ffffff !important;
+  }
+  
   .cell-quinzena {
     background-color: #ffffff !important;
     color: #555555 !important;
