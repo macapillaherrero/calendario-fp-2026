@@ -511,12 +511,12 @@ table.calendar-table td.cell-month {
   border-bottom: 2px solid var(--border-color) !important;
 }
 
-/* Fila de inicio de mes - borde superior en todas las celdas */
-table.calendar-table tr.month-start-row td:not(.cell-month) {
-  border-top: 2px solid var(--text-main) !important;
+/* Fila de inicio de mes - borde superior en todas las celdas (excepto quincenas y mes) */
+table.calendar-table tr.month-start-row td:not(.cell-month):not(.cell-quinzena) {
+  border-top: 3px solid var(--text-main) !important;
 }
-[data-theme="dark"] table.calendar-table tr.month-start-row td:not(.cell-month) {
-  border-top: 2px solid var(--border-color) !important;
+[data-theme="dark"] table.calendar-table tr.month-start-row td:not(.cell-month):not(.cell-quinzena) {
+  border-top: 3px solid var(--border-color) !important;
 }
 
 
@@ -879,8 +879,8 @@ table.calendar-table td.fortnight-divider-q2 {
     color: #000000 !important;
   }
 
-  table.calendar-table tr.month-start-row td:not(.cell-month) {
-    border-top: 2.0px solid #000000 !important;
+  table.calendar-table tr.month-start-row td:not(.cell-month):not(.cell-quinzena) {
+    border-top: 3px solid #000000 !important;
   }
   
   table.calendar-table td.cell-month {

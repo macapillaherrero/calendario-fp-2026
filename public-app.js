@@ -628,6 +628,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const row = document.createElement("tr");
+      if (isNewMonth) {
+        row.classList.add("month-start-row");
+      }
 
       // Celda del Mes (si es inicio de mes)
       if (isNewMonth) {

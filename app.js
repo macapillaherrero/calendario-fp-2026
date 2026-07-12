@@ -658,6 +658,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Crear fila de la semana
       const row = document.createElement("tr");
+      if (isNewMonth) {
+        row.classList.add("month-start-row");
+      }
 
       // Celda del Mes (si es inicio de mes)
       if (isNewMonth) {
