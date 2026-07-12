@@ -226,13 +226,14 @@ function generateCalendarData(customHolidays = {}, customEvents = null) {
 // Calcula los días lectivos totales en la lista de semanas generada
 function countLectiveDays(weeks) {
   let count = 0;
-  // Solo se excluyen del cómputo lectivo los fines de semana, días fuera del calendario,
-  // días no lectivos de organización (a menos que se pinten como lectivos/exámenes), festivos y vacaciones.
-  const noLectivos = ["weekend", "pre-post", "no-lectiu", "festiu", "vacances"];
-  
+  // Solo se computan como lectivos los días dentro del periodo escolar ordinario (del 9 de septiembre al 18 de junio)
+  // que no sean fines de semana, festivos o vacaciones. Los días de preparación (septiembre/junio) no suman al cómputo oficial.
   weeks.forEach(w => {
     w.days.forEach(d => {
-      if (!noLectivos.includes(d.dayType)) {
+      const isWithinTeachingWindow = d.dateStr >= "2026-09-09" && d.dateStr <= "2027-06-18";
+      const noLectivos = ["weekend", "festiu", "vacances"];
+      
+      if (isWithinTeachingWindow && !noLectivos.includes(d.dayType)) {
         count++;
       }
     });
