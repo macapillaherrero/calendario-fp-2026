@@ -9,80 +9,80 @@ window.CUSTOM_PUBLISHED_DATA = {
   },
   "weeklyEvents": {
     "2026-11-16": {
-      "concept": "Ex. 2n  (1era Avaluació)",
-      "type": "exams",
-      "quinzena1": "5",
-      "quinzena2": "Ex 2n"
-    },
-    "2026-11-23": {
-      "concept": "Ex. 1r (2na Avaluació)",
-      "type": "exams",
-      "quinzena1": "Ex 1er",
+      "concept": "",
+      "type": "",
+      "quinzena1": "6",
       "quinzena2": "6"
     },
-    "2026-11-30": {
-      "concept": "Av. 1r/2n",
-      "type": "avaluacions",
+    "2026-11-23": {
+      "concept": "Ex. 2n  (1era Avaluació)",
+      "type": "exams",
       "quinzena1": "6",
+      "quinzena2": "Ex. 2n"
+    },
+    "2026-11-30": {
+      "concept": "Ex. 1er (1era Avaluació)",
+      "type": "exams",
+      "quinzena1": "Ex. 1er",
       "quinzena2": "6"
     },
     "2027-02-15": {
       "concept": "Ex. 2n (2na Avaluació)",
       "type": "exams",
-      "quinzena1": "10",
+      "quinzena1": "11",
       "quinzena2": "Ex 2n"
     },
     "2027-02-22": {
-      "concept": "PI 2n / Av. 2n",
+      "concept": "PI 2n / 2na Avaluació 2n",
       "type": "pfc",
-      "quinzena1": "10",
+      "quinzena1": "11",
       "quinzena2": "PI"
     },
     "2027-03-01": {
-      "concept": "Ex. 1r (2na Avaluació)",
+      "concept": "Ex. 1er (2na Avaluació)",
       "type": "exams",
       "quinzena1": "Ex 1er",
-      "quinzena2": "PI"
+      "quinzena2": "PI/FE"
     },
     "2027-03-08": {
-      "concept": "Av. 1r",
+      "concept": "Avaluació. 1er",
       "type": "av-1r",
-      "quinzena1": "11",
+      "quinzena1": "12",
       "quinzena2": "FE"
     },
     "2027-05-24": {
-      "concept": "FE 1r",
+      "concept": "FE 1er",
       "type": "fe-1r",
-      "quinzena1": "15",
+      "quinzena1": "16",
       "quinzena2": "FE"
     },
     "2027-05-31": {
-      "concept": "Ex 1r",
+      "concept": "Ex 1er (3ª Avaluació)",
       "type": "exams",
       "quinzena1": "FE",
       "quinzena2": "FE"
     },
     "2027-06-07": {
-      "concept": "Av Ordinaria. 2n",
+      "concept": "Av Ordinaria/FE 2n",
       "type": "avaluacions",
       "quinzena1": "FE",
       "quinzena2": "FE"
     },
     "2027-06-14": {
-      "concept": "EX. Extr. 2N / Av. Ord. 1r",
+      "concept": "Ex. Extr. 2n / Av.Ord. 1er",
       "type": "exams",
       "quinzena1": "FE",
       "quinzena2": "FE"
     },
     "2027-06-21": {
-      "concept": "Av. Extr. 2N / Ex.Extr 1r/FPB",
+      "concept": "Av. Extr. 2n / Ex.Extr 1er/FPB",
       "type": "exams",
       "quinzena1": "FE",
       "quinzena2": "FE"
     },
     "2027-06-28": {
-      "concept": "Av. Extr 1r/FPB/",
-      "type": "",
+      "concept": "Av. Extr 1er/FPB/",
+      "type": "avaluacions",
       "quinzena1": "FE",
       "quinzena2": "FE"
     },
@@ -93,51 +93,51 @@ window.CUSTOM_PUBLISHED_DATA = {
       "quinzena2": "1"
     },
     "2026-10-05": {
-      "concept": "Avaluació Inicial",
+      "concept": "Avaluació Inicial 1er y 2n",
       "type": "avaluacions",
-      "quinzena1": "2",
+      "quinzena1": "3",
       "quinzena2": "3"
     },
     "2026-12-07": {
-      "concept": "",
-      "type": "",
-      "quinzena1": "6",
+      "concept": "Avaluació 1r/2n",
+      "type": "avaluacions",
+      "quinzena1": "7",
       "quinzena2": "7"
     },
     "2027-01-04": {
       "concept": "",
       "type": "",
-      "quinzena1": "7",
-      "quinzena2": "7"
-    },
-    "2027-01-18": {
-      "concept": "",
-      "type": "",
       "quinzena1": "8",
       "quinzena2": "8"
     },
-    "2027-02-01": {
+    "2027-01-18": {
       "concept": "",
       "type": "",
       "quinzena1": "9",
       "quinzena2": "9"
     },
+    "2027-02-01": {
+      "concept": "",
+      "type": "",
+      "quinzena1": "10",
+      "quinzena2": "10"
+    },
     "2027-01-11": {
       "concept": "",
       "type": "",
-      "quinzena1": "7",
+      "quinzena1": "8",
       "quinzena2": "8"
     },
     "2027-01-25": {
       "concept": "",
       "type": "",
-      "quinzena1": "8",
+      "quinzena1": "9",
       "quinzena2": "9"
     },
     "2027-02-08": {
       "concept": "",
       "type": "",
-      "quinzena1": "9",
+      "quinzena1": "10",
       "quinzena2": "10"
     },
     "2026-12-21": {
@@ -155,68 +155,56 @@ window.CUSTOM_PUBLISHED_DATA = {
     "2027-03-15": {
       "concept": "",
       "type": "",
-      "quinzena1": "11",
+      "quinzena1": "12",
       "quinzena2": "FE"
     },
     "2027-04-05": {
       "concept": "",
       "type": "",
-      "quinzena1": "12",
+      "quinzena1": "13",
       "quinzena2": "FE"
     },
     "2027-04-12": {
       "concept": "",
       "type": "",
-      "quinzena1": "12",
+      "quinzena1": "13",
       "quinzena2": "FE"
     },
     "2027-04-26": {
       "concept": "",
       "type": "",
-      "quinzena1": "13",
+      "quinzena1": "14",
       "quinzena2": "FE"
     },
     "2027-04-19": {
       "concept": "",
       "type": "",
-      "quinzena1": "13",
+      "quinzena1": "14",
       "quinzena2": "FE"
     },
     "2027-05-03": {
       "concept": "",
       "type": "",
-      "quinzena1": "14",
+      "quinzena1": "15",
       "quinzena2": "FE"
     },
     "2027-05-10": {
       "concept": "",
       "type": "",
-      "quinzena1": "14",
+      "quinzena1": "15",
       "quinzena2": "FE"
     },
     "2027-05-17": {
       "concept": "",
       "type": "",
-      "quinzena1": "15",
+      "quinzena1": "16",
       "quinzena2": "FE"
     },
-    "2026-09-21": {
-      "concept": "",
-      "type": "",
-      "quinzena1": "1",
-      "quinzena2": "2"
-    },
-    "2026-10-19": {
-      "concept": "",
-      "type": "",
-      "quinzena1": "3",
-      "quinzena2": "4"
-    },
-    "2026-11-02": {
-      "concept": "",
-      "type": "",
-      "quinzena1": "4",
-      "quinzena2": "5"
+    "2026-12-14": {
+      "concept": "Avaluació 1r/2n",
+      "type": "avaluacions",
+      "quinzena1": "7",
+      "quinzena2": "7"
     }
   },
   "dayOverrides": {
@@ -230,66 +218,6 @@ window.CUSTOM_PUBLISHED_DATA = {
     },
     "2027-06-18": {
       "dayType": "inici-fi",
-      "holidayName": ""
-    },
-    "2026-11-16": {
-      "dayType": "exams",
-      "holidayName": ""
-    },
-    "2026-11-17": {
-      "dayType": "exams",
-      "holidayName": ""
-    },
-    "2026-11-18": {
-      "dayType": "exams",
-      "holidayName": ""
-    },
-    "2026-11-19": {
-      "dayType": "exams",
-      "holidayName": ""
-    },
-    "2026-11-20": {
-      "dayType": "exams",
-      "holidayName": ""
-    },
-    "2026-11-23": {
-      "dayType": "exams",
-      "holidayName": ""
-    },
-    "2026-11-24": {
-      "dayType": "exams",
-      "holidayName": ""
-    },
-    "2026-11-25": {
-      "dayType": "exams",
-      "holidayName": ""
-    },
-    "2026-11-26": {
-      "dayType": "exams",
-      "holidayName": ""
-    },
-    "2026-11-27": {
-      "dayType": "exams",
-      "holidayName": ""
-    },
-    "2026-11-30": {
-      "dayType": "avaluacions",
-      "holidayName": ""
-    },
-    "2026-12-01": {
-      "dayType": "avaluacions",
-      "holidayName": ""
-    },
-    "2026-12-02": {
-      "dayType": "avaluacions",
-      "holidayName": ""
-    },
-    "2026-12-03": {
-      "dayType": "avaluacions",
-      "holidayName": ""
-    },
-    "2026-12-04": {
-      "dayType": "avaluacions",
       "holidayName": ""
     },
     "2027-02-15": {
@@ -317,7 +245,7 @@ window.CUSTOM_PUBLISHED_DATA = {
       "holidayName": ""
     },
     "2027-02-25": {
-      "dayType": "lectiu",
+      "dayType": "pfc",
       "holidayName": ""
     },
     "2027-03-04": {
@@ -442,6 +370,86 @@ window.CUSTOM_PUBLISHED_DATA = {
     },
     "2027-06-25": {
       "dayType": "exams",
+      "holidayName": ""
+    },
+    "2027-02-22": {
+      "dayType": "pfc",
+      "holidayName": ""
+    },
+    "2027-02-26": {
+      "dayType": "pfc",
+      "holidayName": ""
+    },
+    "2026-12-09": {
+      "dayType": "avaluacions",
+      "holidayName": ""
+    },
+    "2026-12-10": {
+      "dayType": "avaluacions",
+      "holidayName": ""
+    },
+    "2026-12-11": {
+      "dayType": "lectiu",
+      "holidayName": ""
+    },
+    "2026-12-14": {
+      "dayType": "avaluacions",
+      "holidayName": ""
+    },
+    "2026-12-15": {
+      "dayType": "avaluacions",
+      "holidayName": ""
+    },
+    "2026-11-30": {
+      "dayType": "exams",
+      "holidayName": ""
+    },
+    "2026-12-01": {
+      "dayType": "exams",
+      "holidayName": ""
+    },
+    "2026-12-02": {
+      "dayType": "exams",
+      "holidayName": ""
+    },
+    "2026-12-03": {
+      "dayType": "exams",
+      "holidayName": ""
+    },
+    "2026-12-04": {
+      "dayType": "exams",
+      "holidayName": ""
+    },
+    "2026-11-23": {
+      "dayType": "exams",
+      "holidayName": ""
+    },
+    "2026-11-24": {
+      "dayType": "exams",
+      "holidayName": ""
+    },
+    "2026-11-25": {
+      "dayType": "exams",
+      "holidayName": ""
+    },
+    "2026-11-26": {
+      "dayType": "exams",
+      "holidayName": ""
+    },
+    "2026-11-27": {
+      "dayType": "exams",
+      "holidayName": ""
+    },
+    "2026-12-16": {
+      "dayType": "lectiu",
+      "holidayName": ""
+    },
+    "2026-12-17": {
+      "dayType": "lectiu",
+      "holidayName": ""
+    },
+    "2026-12-18": {
+      "dayType": "lectiu",
       "holidayName": ""
     }
   }
