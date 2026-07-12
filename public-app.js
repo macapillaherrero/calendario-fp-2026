@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Si es un periodo especial no lectivo o de prácticas, no sombrear
     const lower = cleanLabel.toLowerCase();
-    if (lower.includes("ex") || lower.includes("fe") || lower.includes("navidad") || lower.includes("pascua") || lower.includes("pi")) {
+    if (lower.includes("ex") || lower.includes("fe") || lower.includes("nadal") || lower.includes("pasqua") || lower.includes("pi")) {
       return "";
     }
     
@@ -587,7 +587,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const noLectivosContainer = document.getElementById("no-lectivos-breakdown-list");
     if (noLectivosContainer) {
       noLectivosContainer.innerHTML = `
-        ${counts.weekend > 0 ? createBreakdownRow("Fins de setmana", counts.weekend, "color-weekend") : ""}
+        ${counts.weekend > 0 ? createBreakdownRow("Caps de setmana", counts.weekend, "color-weekend") : ""}
         ${counts.vacances > 0 ? createBreakdownRow("Vacances", counts.vacances, "color-vacances") : ""}
         ${counts.festiu > 0 ? createBreakdownRow("Festius", counts.festiu, "color-festiu") : ""}
         ${counts["no-lectiu"] > 0 ? createBreakdownRow("No lectius (Set/Jun)", counts["no-lectiu"], "color-no-lectiu") : ""}

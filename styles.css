@@ -785,8 +785,42 @@ table.calendar-table td.fortnight-divider-q2 {
   flex-shrink: 0;
 }
 
-/* Controles flotantes en móviles */
+/* Clases de adaptabilidad de texto para cabeceras en móvil */
+.short-day {
+  display: none;
+}
+.full-day {
+  display: inline;
+}
+
+/* Indicador de deslizamiento en móvil */
+.mobile-scroll-tip {
+  display: none;
+  background-color: var(--accent-light);
+  color: var(--accent-color);
+  padding: 0.6rem 0.85rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--accent-color);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Controles adaptativos en móviles */
 @media (max-width: 768px) {
+  .short-day {
+    display: inline !important;
+  }
+  .full-day {
+    display: none !important;
+  }
+  .mobile-scroll-tip {
+    display: flex !important;
+  }
+
   .app-container {
     flex-direction: column;
     overflow-y: auto;
@@ -796,11 +830,33 @@ table.calendar-table td.fortnight-divider-q2 {
     width: 100%;
     border-right: none;
     border-bottom: 1px solid var(--border-color);
-    max-height: 400px;
+    max-height: 380px;
+    flex-shrink: 0;
   }
   
   main.calendar-view {
-    padding: 1rem;
+    padding: 0.75rem !important;
+  }
+
+  /* Compactar tabla y celdas en pantallas pequeñas */
+  table.calendar-table {
+    font-size: 0.72rem !important;
+  }
+  table.calendar-table th, table.calendar-table td {
+    padding: 3px 2px !important;
+  }
+  td.cell-concept {
+    font-size: 0.7rem !important;
+    min-width: 90px !important;
+  }
+
+  .calendar-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .calendar-title-text h2 {
+    font-size: 1.1rem;
   }
 }
 

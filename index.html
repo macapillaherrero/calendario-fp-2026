@@ -185,6 +185,11 @@
         </button>
       </div>
 
+      <!-- Indicador móvil de deslizamiento -->
+      <div class="mobile-scroll-tip">
+        <i class="fa-solid fa-arrows-left-right"></i> Glissa lateralment la taula per a veure tot el calendari.
+      </div>
+
       <!-- Cuadrícula Principal del Calendario -->
       <div class="table-wrapper">
         <table class="calendar-table" id="calendar-grid">
@@ -192,15 +197,15 @@
             <tr>
               <th class="col-month">Mes</th>
               <th class="col-concept">Conceptes</th>
-              <th>Dilluns</th>
-              <th>Dimarts</th>
-              <th>Dimecres</th>
-              <th>Dijous</th>
-              <th>Divendres</th>
-              <th>Dissabte</th>
-              <th>Diumenge</th>
-              <th class="col-quinzena" id="th-q2">Quinzena 2n</th>
-              <th class="col-quinzena" id="th-q1">Quinzena 1er</th>
+              <th><span class="full-day">Dilluns</span><span class="short-day">Dl</span></th>
+              <th><span class="full-day">Dimarts</span><span class="short-day">Dm</span></th>
+              <th><span class="full-day">Dimecres</span><span class="short-day">Dc</span></th>
+              <th><span class="full-day">Dijous</span><span class="short-day">Dj</span></th>
+              <th><span class="full-day">Divendres</span><span class="short-day">Dv</span></th>
+              <th><span class="full-day">Dissabte</span><span class="short-day">Ds</span></th>
+              <th><span class="full-day">Diumenge</span><span class="short-day">Dg</span></th>
+              <th class="col-quinzena" id="th-q2"><span class="full-day">Quinzena 2n</span><span class="short-day">Q 2n</span></th>
+              <th class="col-quinzena" id="th-q1"><span class="full-day">Quinzena 1er</span><span class="short-day">Q 1r</span></th>
             </tr>
           </thead>
           <tbody id="calendar-body">

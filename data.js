@@ -26,12 +26,12 @@ const CONFIG_2026_2027 = {
     {
       start: "2026-12-22",
       end: "2027-01-06",
-      name: "Vacaciones de Navidad"
+      name: "Vacances de Nadal"
     },
     {
       start: "2027-03-25",
       end: "2027-04-05",
-      name: "Vacaciones de Pascua"
+      name: "Vacances de Pasqua"
     }
   ],
 
@@ -175,14 +175,14 @@ function generateCalendarData(customHolidays = {}, customEvents = null) {
     else if (weekNum === 12) q1Label = "Ex 1er";
     else if (weekNum === 13) q1Label = "6"; 
     else if (weekNum === 14 || weekNum === 15) q1Label = "7";
-    else if (weekNum === 16 || weekNum === 17) q1Label = "Navidad"; 
+    else if (weekNum === 16 || weekNum === 17) q1Label = "Nadal"; 
     else if (weekNum === 18 || weekNum === 19) q1Label = "8";
     else if (weekNum === 20 || weekNum === 21) q1Label = "9";
     else if (weekNum === 22 || weekNum === 23) q1Label = "10";
     else if (weekNum === 24 || weekNum === 25) q1Label = "11";
     else if (weekNum === 26) q1Label = "Ex 1er";
     else if (weekNum === 27 || weekNum === 28) q1Label = "12";
-    else if (weekNum === 29 || weekNum === 30) q1Label = "Pascua"; 
+    else if (weekNum === 29 || weekNum === 30) q1Label = "Pasqua"; 
     else if (weekNum === 31 || weekNum === 32) q1Label = "13";
     else if (weekNum === 33 || weekNum === 34) q1Label = "14";
     else if (weekNum === 35 || weekNum === 36) q1Label = "15";
@@ -198,7 +198,7 @@ function generateCalendarData(customHolidays = {}, customEvents = null) {
     else if (weekNum === 11) q2Label = "Ex 2n";
     else if (weekNum === 12 || weekNum === 13) q2Label = "6";
     else if (weekNum === 14 || weekNum === 15) q2Label = "7";
-    else if (weekNum === 16 || weekNum === 17) q2Label = "Navidad";
+    else if (weekNum === 16 || weekNum === 17) q2Label = "Nadal";
     else if (weekNum === 18 || weekNum === 19) q2Label = "8";
     else if (weekNum === 20 || weekNum === 21) q2Label = "9";
     else if (weekNum === 22 || weekNum === 23) q2Label = "10";
