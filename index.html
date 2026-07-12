@@ -61,8 +61,8 @@
         <h3><i class="fa-solid fa-layer-group"></i> Selecció de Curs</h3>
         <div class="view-toggle-container">
           <button class="view-btn active" data-view="unified">Unificat</button>
-          <button class="view-btn" data-view="1er">1er Any</button>
-          <button class="view-btn" data-view="2n">2n Any</button>
+          <button class="view-btn" data-view="1er">1er Curs</button>
+          <button class="view-btn" data-view="2n">2n Curs</button>
         </div>
         <div style="margin-top: 0.75rem; border-top: 1px solid var(--border-color); padding-top: 0.5rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem;">
@@ -79,47 +79,6 @@
             <label style="font-size: 0.7rem; display: flex; align-items: center; gap: 0.2rem; cursor: pointer; color: var(--text-muted);">
               <input type="radio" name="shading-base" value="2n" style="width: auto; cursor: pointer;"> 2n
             </label>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Contador de Días Lectivos -->
-      <div class="card">
-        <h3><i class="fa-solid fa-calculator"></i> Dies Lectius</h3>
-        <div class="stats-grid">
-          <div class="stat-box">
-            <div class="stat-number" id="lective-count">179</div>
-            <div class="stat-label">Dies Lectius totals</div>
-            <div class="target-badge" id="lective-badge">Objectiu: 179 dies</div>
-          </div>
-        </div>
-        <div id="stats-breakdown" style="margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
-          <h4 style="font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.3rem; text-transform: uppercase; letter-spacing: 0.03em;">
-            <i class="fa-solid fa-square-poll-vertical" style="color: var(--accent-color); font-size: 0.7rem;"></i> Desglós Lectius
-          </h4>
-          <div class="breakdown-list" id="lectivos-breakdown-list" style="display: flex; flex-direction: column; gap: 0.1rem;"></div>
-          
-          <h4 style="font-size: 0.8rem; font-weight: 600; margin-top: 0.85rem; margin-bottom: 0.5rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.3rem; text-transform: uppercase; letter-spacing: 0.03em;">
-            <i class="fa-solid fa-ban" style="color: var(--text-muted); font-size: 0.7rem;"></i> Desglós No Lectius
-          </h4>
-          <div class="breakdown-list" id="no-lectivos-breakdown-list" style="display: flex; flex-direction: column; gap: 0.1rem;"></div>
-        </div>
-      </div>
-      
-      <!-- Configuración de Festivos Municipales/Locales -->
-      <div class="card">
-        <h3><i class="fa-solid fa-map-pin"></i> Festius Locals (3 max)</h3>
-        <div class="holiday-list" id="holidays-list-container">
-          <!-- Se cargan dinámicamente -->
-        </div>
-        
-        <div style="margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
-          <h4 style="font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-muted);">Afegir Festiu Local</h4>
-          <div style="display: flex; gap: 0.5rem;">
-            <input type="date" id="new-holiday-date" class="text-input" style="padding: 0.35rem;" min="2026-09-01" max="2027-06-30">
-            <button class="btn btn-primary" id="add-holiday-btn" style="padding: 0.35rem 0.65rem;" title="Afegir dia">
-              <i class="fa-solid fa-plus"></i>
-            </button>
           </div>
         </div>
       </div>
@@ -167,6 +126,47 @@
           <div class="legend-item" data-type="lectiu">
             <div class="legend-color color-lectiu"></div>
             <span>Lectiu Ordinari</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Contador de Días Lectivos -->
+      <div class="card">
+        <h3><i class="fa-solid fa-calculator"></i> Dies Lectius</h3>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-number" id="lective-count">179</div>
+            <div class="stat-label">Dies Lectius totals</div>
+            <div class="target-badge" id="lective-badge">Objectiu: 179 dies</div>
+          </div>
+        </div>
+        <div id="stats-breakdown" style="margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
+          <h4 style="font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.3rem; text-transform: uppercase; letter-spacing: 0.03em;">
+            <i class="fa-solid fa-square-poll-vertical" style="color: var(--accent-color); font-size: 0.7rem;"></i> Desglós Lectius
+          </h4>
+          <div class="breakdown-list" id="lectivos-breakdown-list" style="display: flex; flex-direction: column; gap: 0.1rem;"></div>
+          
+          <h4 style="font-size: 0.8rem; font-weight: 600; margin-top: 0.85rem; margin-bottom: 0.5rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.3rem; text-transform: uppercase; letter-spacing: 0.03em;">
+            <i class="fa-solid fa-ban" style="color: var(--text-muted); font-size: 0.7rem;"></i> Desglós No Lectius
+          </h4>
+          <div class="breakdown-list" id="no-lectivos-breakdown-list" style="display: flex; flex-direction: column; gap: 0.1rem;"></div>
+        </div>
+      </div>
+      
+      <!-- Configuración de Festivos Municipales/Locales -->
+      <div class="card">
+        <h3><i class="fa-solid fa-map-pin"></i> Festius Locals (3 max)</h3>
+        <div class="holiday-list" id="holidays-list-container">
+          <!-- Se cargan dinámicamente -->
+        </div>
+        
+        <div style="margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
+          <h4 style="font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-muted);">Afegir Festiu Local</h4>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="date" id="new-holiday-date" class="text-input" style="padding: 0.35rem;" min="2026-09-01" max="2027-06-30">
+            <button class="btn btn-primary" id="add-holiday-btn" style="padding: 0.35rem 0.65rem;" title="Afegir dia">
+              <i class="fa-solid fa-plus"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -274,11 +274,11 @@
         <!-- Edición de Quincenas -->
         <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
           <div class="form-group" style="flex: 1;">
-            <label for="modal-q1-input">Quinzena 1er Any</label>
+            <label for="modal-q1-input">Quinzena 1er Curs</label>
             <input type="text" id="modal-q1-input" class="text-input" placeholder="Ex: 1, Ex 1er, FE...">
           </div>
           <div class="form-group" style="flex: 1;">
-            <label for="modal-q2-input">Quinzena 2n Any</label>
+            <label for="modal-q2-input">Quinzena 2n Curs</label>
             <input type="text" id="modal-q2-input" class="text-input" placeholder="Ex: 1, Ex 2n, FE...">
           </div>
         </div>
