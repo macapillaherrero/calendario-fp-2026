@@ -770,10 +770,20 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (week.quinzena2) {
           q2Cell.textContent = week.quinzena2;
-          if (week.quinzena2 === "Ex 2n") {
+          const cleanLabel = String(week.quinzena2).toLowerCase()
+            .replace(/extraordinaria/g, "")
+            .replace(/extraordinària/g, "")
+            .replace(/extr\./g, "")
+            .replace(/extr/g, "");
+
+          if (cleanLabel.includes("ex") || cleanLabel.includes("exàmen")) {
             q2Cell.classList.add("cell-exams");
-          } else if (week.quinzena2 === "PI / FE" || week.quinzena2 === "FE") {
+          } else if (cleanLabel.includes("fe") || cleanLabel.includes("fct")) {
             q2Cell.classList.add("cell-quinzena-special");
+          } else if (cleanLabel.includes("pi") || cleanLabel.includes("pfc")) {
+            q2Cell.classList.add("cell-pfc");
+          } else if (cleanLabel.includes("av") || cleanLabel.includes("avaluació")) {
+            q2Cell.classList.add("cell-avaluacions");
           } else if (!isNaN(week.quinzena2)) {
             q2Cell.classList.add("cell-quinzena-active");
           }
@@ -798,10 +808,20 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (week.quinzena1) {
           q1Cell.textContent = week.quinzena1;
-          if (week.quinzena1.includes("Ex 1er")) {
+          const cleanLabel = String(week.quinzena1).toLowerCase()
+            .replace(/extraordinaria/g, "")
+            .replace(/extraordinària/g, "")
+            .replace(/extr\./g, "")
+            .replace(/extr/g, "");
+
+          if (cleanLabel.includes("ex") || cleanLabel.includes("exàmen")) {
             q1Cell.classList.add("cell-exams");
-          } else if (week.quinzena1 === "FE") {
+          } else if (cleanLabel.includes("fe") || cleanLabel.includes("fct")) {
             q1Cell.classList.add("cell-quinzena-special");
+          } else if (cleanLabel.includes("pi") || cleanLabel.includes("pfc")) {
+            q1Cell.classList.add("cell-pfc");
+          } else if (cleanLabel.includes("av") || cleanLabel.includes("avaluació")) {
+            q1Cell.classList.add("cell-avaluacions");
           } else if (!isNaN(week.quinzena1)) {
             q1Cell.classList.add("cell-quinzena-active");
           }

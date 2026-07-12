@@ -967,7 +967,7 @@ table.calendar-table td.fortnight-divider-q2 {
   }
   
   table.calendar-table th, table.calendar-table td {
-    border: 1px solid #555555 !important;
+    border: 1.2px solid #000000 !important;
     padding: 1px 2px !important;
     height: 10.5pt !important;
     line-height: 1.0 !important;
@@ -1014,6 +1014,13 @@ table.calendar-table td.fortnight-divider-q2 {
     background-color: #ffffff !important;
     color: #555555 !important;
   }
+  
+  /* Permitir que las quincenas especiales se pinten en la impresión */
+  .cell-quinzena.cell-exams { background-color: #fde047 !important; }
+  .cell-quinzena.cell-quinzena-special { background-color: #fed7aa !important; }
+  .cell-quinzena.cell-pfc { background-color: #e9d5ff !important; }
+  .cell-quinzena.cell-avaluacions { background-color: #fecaca !important; }
+  .cell-quinzena.cell-vacances { background-color: #ccfbf1 !important; }
   
   /* Forzar corte de páginas limpio si es necesario */
   tr {
