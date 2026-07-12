@@ -806,6 +806,11 @@ table.calendar-table td.fortnight-divider-q2 {
 
 /* Estilos de Impresión - PDF en A4 Horizontal */
 @media print {
+  @page {
+    size: A4 landscape;
+    margin: 6mm 6mm 4mm 6mm !important;
+  }
+
   html, body, .app-container {
     height: auto !important;
     min-height: auto !important;
@@ -814,7 +819,7 @@ table.calendar-table td.fortnight-divider-q2 {
     position: static !important;
     background-color: #ffffff !important;
     color: #000000 !important;
-    font-size: 7.5pt !important;
+    font-size: 6.5pt !important;
   }
   
   header, aside.sidebar, .calendar-header .btn, .edit-indicator, .view-toggle-container, .header-controls {
@@ -832,20 +837,19 @@ table.calendar-table td.fortnight-divider-q2 {
   }
   
   .calendar-header {
-    margin-bottom: 10px !important;
+    margin-bottom: 2px !important;
     display: block !important;
     text-align: center;
   }
   
   .calendar-title-text h2 {
-    font-size: 14pt !important;
-    margin-bottom: 4px;
+    font-size: 11pt !important;
+    margin: 0 !important;
     color: #000000 !important;
   }
 
   .calendar-title-text p {
-    font-size: 9pt !important;
-    color: #555555 !important;
+    display: none !important;
   }
 
   .table-wrapper {
@@ -858,13 +862,14 @@ table.calendar-table td.fortnight-divider-q2 {
   table.calendar-table {
     width: 100% !important;
     border-collapse: collapse !important;
-    font-size: 7.5pt !important;
+    font-size: 6.5pt !important;
   }
   
   table.calendar-table th, table.calendar-table td {
     border: 1px solid #555555 !important;
-    padding: 3px !important;
-    height: 18pt !important;
+    padding: 1px 2px !important;
+    height: 10.5pt !important;
+    line-height: 1.0 !important;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
@@ -875,7 +880,7 @@ table.calendar-table td.fortnight-divider-q2 {
   }
 
   table.calendar-table tr.month-start-row td:not(.cell-month) {
-    border-top: 2px solid #000000 !important;
+    border-top: 2.0px solid #000000 !important;
   }
   
   table.calendar-table td.cell-month {
@@ -883,6 +888,11 @@ table.calendar-table td.fortnight-divider-q2 {
     background-color: #f1f5f9 !important;
     color: #000000 !important;
     font-weight: bold !important;
+  }
+  
+  /* Ocultar las etiquetas de 'Sense concepte' en la impresión */
+  .no-concept-placeholder {
+    display: none !important;
   }
   
   /* Mantener colores en la impresión */
@@ -912,37 +922,37 @@ table.calendar-table td.fortnight-divider-q2 {
   /* Leyenda exclusiva para impresión */
   .print-only-legend {
     display: block !important;
-    margin-top: 25px !important;
+    margin-top: 5px !important;
     page-break-inside: avoid !important;
   }
   
   .print-only-legend h3 {
-    font-size: 11pt !important;
+    font-size: 8pt !important;
     font-weight: bold !important;
-    margin-bottom: 8px !important;
+    margin-bottom: 3px !important;
     color: #000000 !important;
     border-bottom: 1px solid #000000 !important;
-    padding-bottom: 4px !important;
+    padding-bottom: 2px !important;
   }
   
   .print-legend-grid {
     display: grid !important;
-    grid-template-columns: repeat(5, 1fr) !important;
-    gap: 8px !important;
-    margin-top: 8px !important;
+    grid-template-columns: repeat(10, 1fr) !important;
+    gap: 4px !important;
+    margin-top: 4px !important;
   }
   
   .print-legend-item {
     display: flex !important;
     align-items: center !important;
-    gap: 6px !important;
-    font-size: 7.5pt !important;
+    gap: 4px !important;
+    font-size: 6.5pt !important;
     color: #000000 !important;
   }
   
   .print-legend-color {
-    width: 10px !important;
-    height: 10px !important;
+    width: 8px !important;
+    height: 8px !important;
     border-radius: 50% !important;
     flex-shrink: 0 !important;
     border: 1px solid #000000 !important;
@@ -950,7 +960,7 @@ table.calendar-table td.fortnight-divider-q2 {
     -webkit-print-color-adjust: exact;
   }
 
-  /* Colores de la leyenda impresa */
+  /* Colores de la leyenda de impresión */
   .print-legend-color.color-inici-fi { background-color: #fef08a !important; }
   .print-legend-color.color-inici-fe { background-color: #fed7aa !important; }
   .print-legend-color.color-pfc { background-color: #e9d5ff !important; }
