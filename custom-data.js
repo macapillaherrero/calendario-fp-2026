@@ -15,13 +15,13 @@ window.CUSTOM_PUBLISHED_DATA = {
       "quinzena2": "Ex 2n"
     },
     "2026-11-23": {
-      "concept": "Ex. 1er (1era Avaluació)",
+      "concept": "Ex. 1r (2na Avaluació)",
       "type": "exams",
       "quinzena1": "Ex 1er",
       "quinzena2": "6"
     },
     "2026-11-30": {
-      "concept": "Avaluació 1r/2n",
+      "concept": "Av. 1r/2n",
       "type": "avaluacions",
       "quinzena1": "6",
       "quinzena2": "6"
@@ -33,56 +33,56 @@ window.CUSTOM_PUBLISHED_DATA = {
       "quinzena2": "Ex 2n"
     },
     "2027-02-22": {
-      "concept": "PI 2n / 2na Avaluació 2n",
+      "concept": "PI 2n / Av. 2n",
       "type": "pfc",
       "quinzena1": "10",
       "quinzena2": "PI"
     },
     "2027-03-01": {
-      "concept": "Ex. 1er (2na Avaluació)",
+      "concept": "Ex. 1r (2na Avaluació)",
       "type": "exams",
       "quinzena1": "Ex 1er",
-      "quinzena2": "PI/FE"
+      "quinzena2": "PI"
     },
     "2027-03-08": {
-      "concept": "Avaluació. 1er",
+      "concept": "Av. 1r",
       "type": "av-1r",
       "quinzena1": "11",
       "quinzena2": "FE"
     },
     "2027-05-24": {
-      "concept": "FE 1er",
+      "concept": "FE 1r",
       "type": "fe-1r",
       "quinzena1": "15",
       "quinzena2": "FE"
     },
     "2027-05-31": {
-      "concept": "Ex 1er (3ª Avaluació)",
+      "concept": "Ex 1r",
       "type": "exams",
       "quinzena1": "FE",
       "quinzena2": "FE"
     },
     "2027-06-07": {
-      "concept": "Av Ordinaria/FE 2n",
+      "concept": "Av Ordinaria. 2n",
       "type": "avaluacions",
       "quinzena1": "FE",
       "quinzena2": "FE"
     },
     "2027-06-14": {
-      "concept": "Ex. Extr. 2n / Av.Ord. 1er",
+      "concept": "EX. Extr. 2N / Av. Ord. 1r",
       "type": "exams",
       "quinzena1": "FE",
       "quinzena2": "FE"
     },
     "2027-06-21": {
-      "concept": "Av. Extr. 2n / Ex.Extr 1er/FPB",
+      "concept": "Av. Extr. 2N / Ex.Extr 1r/FPB",
       "type": "exams",
       "quinzena1": "FE",
       "quinzena2": "FE"
     },
     "2027-06-28": {
-      "concept": "Av. Extr 1er/FPB/",
-      "type": "avaluacions",
+      "concept": "Av. Extr 1r/FPB/",
+      "type": "",
       "quinzena1": "FE",
       "quinzena2": "FE"
     },
@@ -93,9 +93,9 @@ window.CUSTOM_PUBLISHED_DATA = {
       "quinzena2": "1"
     },
     "2026-10-05": {
-      "concept": "Avaluació Inicial 1er y 2n",
+      "concept": "Avaluació Inicial",
       "type": "avaluacions",
-      "quinzena1": "3",
+      "quinzena1": "2",
       "quinzena2": "3"
     },
     "2026-12-07": {
@@ -199,6 +199,24 @@ window.CUSTOM_PUBLISHED_DATA = {
       "type": "",
       "quinzena1": "15",
       "quinzena2": "FE"
+    },
+    "2026-09-21": {
+      "concept": "",
+      "type": "",
+      "quinzena1": "1",
+      "quinzena2": "2"
+    },
+    "2026-10-19": {
+      "concept": "",
+      "type": "",
+      "quinzena1": "3",
+      "quinzena2": "4"
+    },
+    "2026-11-02": {
+      "concept": "",
+      "type": "",
+      "quinzena1": "4",
+      "quinzena2": "5"
     }
   },
   "dayOverrides": {
@@ -299,7 +317,7 @@ window.CUSTOM_PUBLISHED_DATA = {
       "holidayName": ""
     },
     "2027-02-25": {
-      "dayType": "pfc",
+      "dayType": "lectiu",
       "holidayName": ""
     },
     "2027-03-04": {
@@ -424,14 +442,6 @@ window.CUSTOM_PUBLISHED_DATA = {
     },
     "2027-06-25": {
       "dayType": "exams",
-      "holidayName": ""
-    },
-    "2027-02-22": {
-      "dayType": "pfc",
-      "holidayName": ""
-    },
-    "2027-02-26": {
-      "dayType": "pfc",
       "holidayName": ""
     }
   }
