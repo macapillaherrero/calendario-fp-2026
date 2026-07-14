@@ -883,11 +883,373 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // --- CÀLCULS DINÀMICS DE FINALITZACIÓ DE FE ---
+
+  function getFeStartDate(weeks) {
+    for (const w of weeks) {
+      for (const d of w.days) {
+        if (d.dateStr >= "2027-03-01" && d.dateStr <= "2027-04-15" && d.dayType === "inici-fe") {
+          return d.dateStr;
+        }
+      }
+    }
+    return "2027-03-03"; // Default fallback
+  }
+
+  function getPostFallasStartDate(weeks) {
+    const allDays = [];
+    weeks.forEach(w => {
+      w.days.forEach(d => {
+        if (d.dateStr >= "2027-03-20") {
+          allDays.push(d);
+        }
+      });
+    });
+    allDays.sort((a, b) => a.dateStr.localeCompare(b.dateStr));
+    for (const day of allDays) {
+      const isWeekend = (day.dayOfWeek === 0 || day.dayOfWeek === 6);
+      const isHoliday = (day.dayType === "festiu");
+      if (!isWeekend && !isHoliday) {
+        return day.dateStr;
+      }
+    }
+    return "2027-03-22";
+  }
+
+  function calculateFeEndDate(weeks, hoursPerDay, startsAfterFallas, allowVacations) {
+    const targetDays = Math.ceil(500 / hoursPerDay);
+    
+    let feStart = getFeStartDate(weeks);
+    let startStr = startsAfterFallas ? getPostFallasStartDate(weeks) : feStart;
+    
+    const allDays = [];
+    weeks.forEach(w => {
+      w.days.forEach(d => {
+        if (d.dateStr >= startStr) {
+          allDays.push(d);
+        }
+      });
+    });
+    allDays.sort((a, b) => a.dateStr.localeCompare(b.dateStr));
+    
+    let daysCounted = 0;
+    let lastDay = null;
+    
+    for (const day of allDays) {
+      const isWeekend = (day.dayOfWeek === 0 || day.dayOfWeek === 6);
+      if (isWeekend) continue;
+      
+      const isHoliday = (day.dayType === "festiu");
+      const isVacation = (day.dayType === "vacances");
+      
+      let isAllowed = false;
+      if (!isHoliday) {
+        if (isVacation) {
+          isAllowed = allowVacations;
+        } else {
+          isAllowed = true;
+        }
+      }
+      
+      if (isAllowed) {
+        daysCounted++;
+        if (daysCounted === targetDays) {
+          lastDay = day;
+          break;
+        }
+      }
+    }
+    
+    return lastDay ? lastDay.dateStr : null;
+  }
+
+  function getFe1rStartDate(weeks) {
+    for (const w of weeks) {
+      for (const d of w.days) {
+        if (d.dateStr >= "2027-05-15" && d.dateStr <= "2027-05-31" && d.dayType === "inici-fe") {
+          return d.dateStr;
+        }
+      }
+    }
+    return "2027-05-26"; // Default fallback
+  }
+
+  function calculateFe1rEndDate(weeks, hoursPerDay) {
+    const targetDays = Math.ceil(100 / hoursPerDay); // 13 days for 8h, 15 days for 7h
+    
+    let feStart = getFe1rStartDate(weeks);
+    
+    const allDays = [];
+    weeks.forEach(w => {
+      w.days.forEach(d => {
+        if (d.dateStr >= feStart) {
+          allDays.push(d);
+        }
+      });
+    });
+    allDays.sort((a, b) => a.dateStr.localeCompare(b.dateStr));
+    
+    let daysCounted = 0;
+    let lastDay = null;
+    
+    for (const day of allDays) {
+      const isWeekend = (day.dayOfWeek === 0 || day.dayOfWeek === 6);
+      if (isWeekend) continue;
+      
+      const isHoliday = (day.dayType === "festiu");
+      
+      if (!isHoliday) {
+        daysCounted++;
+        if (daysCounted === targetDays) {
+          lastDay = day;
+          break;
+        }
+      }
+    }
+    
+    return lastDay ? lastDay.dateStr : null;
+  }
+
+  function formatFriendlyFeDate(dateStr) {
+    if (!dateStr) return "N/A";
+    const parts = dateStr.split("-");
+    const d = new Date(parts[0], parts[1] - 1, parts[2]);
+    const weekday = ["Dg", "Dl", "Dm", "Dc", "Dj", "Dv", "Ds"][d.getDay()];
+    const month = MONTH_NAMES[d.getMonth()];
+    return `${weekday} ${parts[2]} de ${month}`;
+  }
+
+  let activeFeCaseId = null;
+  let activeFe1rCaseId = null;
+
+  function updateFeOptions(weeks) {
+    const container = document.getElementById("fe-options-list");
+    if (!container) return;
+
+    const cases = [
+      {
+        id: 1,
+        title: "1. 8h/dia + Vacances",
+        desc: "Fa FE en vacances. Excepte festius i 19 Març.",
+        hoursPerDay: 8,
+        startsAfterFallas: false,
+        allowVacations: true
+      },
+      {
+        id: 2,
+        title: "2. 7h/dia + Vacances",
+        desc: "Fa FE en vacances. Excepte festius i 19 Març.",
+        hoursPerDay: 7,
+        startsAfterFallas: false,
+        allowVacations: true
+      },
+      {
+        id: 3,
+        title: "3. 8h/dia + Vacances (post-Falles)",
+        desc: "Inici post-Falles (22/03). Fa FE en Pasqua. Excepte festius.",
+        hoursPerDay: 8,
+        startsAfterFallas: true,
+        allowVacations: true
+      },
+      {
+        id: 4,
+        title: "4. 7h/dia + Vacances (post-Falles)",
+        desc: "Inici post-Falles (22/03). Fa FE en Pasqua. Excepte festius.",
+        hoursPerDay: 7,
+        startsAfterFallas: true,
+        allowVacations: true
+      },
+      {
+        id: 5,
+        title: "5. 8h/dia Ordinari (sense vacances)",
+        desc: "No fa FE en Nadal/Pasqua ni en Falles.",
+        hoursPerDay: 8,
+        startsAfterFallas: false,
+        allowVacations: false
+      },
+      {
+        id: 6,
+        title: "6. 7h/dia Ordinari (sense vacances)",
+        desc: "No fa FE en Nadal/Pasqua ni en Falles.",
+        hoursPerDay: 7,
+        startsAfterFallas: false,
+        allowVacations: false
+      }
+    ];
+
+    // Compute end dates first
+    cases.forEach(c => {
+      c.endDateStr = calculateFeEndDate(weeks, c.hoursPerDay, c.startsAfterFallas, c.allowVacations);
+      c.friendlyDate = formatFriendlyFeDate(c.endDateStr);
+    });
+
+    // Sort cases by endDateStr ascending (earliest to latest)
+    cases.sort((a, b) => {
+      if (!a.endDateStr) return 1;
+      if (!b.endDateStr) return -1;
+      return a.endDateStr.localeCompare(b.endDateStr);
+    });
+
+    let html = "";
+    cases.forEach(c => {
+      const isActive = c.id === activeFeCaseId;
+      html += `
+        <div class="fe-option-item ${isActive ? 'active' : ''}" data-case-id="${c.id}" data-end-date="${c.endDateStr || ''}" style="cursor: pointer;">
+          <div class="fe-option-title">${c.title}</div>
+          <div class="fe-option-date-container">
+            <span class="fe-option-desc">${c.desc}</span>
+            <span class="fe-option-date">${c.friendlyDate}</span>
+          </div>
+        </div>
+      `;
+    });
+
+    container.innerHTML = html;
+
+    // Remove any existing highlights
+    document.querySelectorAll(".date-cell").forEach(cell => {
+      cell.classList.remove("highlight-fe-end");
+    });
+
+    // If there is an active case, highlight its cell
+    if (activeFeCaseId !== null) {
+      const activeCase = cases.find(c => c.id === activeFeCaseId);
+      if (activeCase && activeCase.endDateStr) {
+        const cell = document.querySelector(`.date-cell[data-date="${activeCase.endDateStr}"]`);
+        if (cell) {
+          cell.classList.add("highlight-fe-end");
+        }
+      }
+    }
+
+    // Attach click events
+    container.querySelectorAll(".fe-option-item").forEach(item => {
+      item.addEventListener("click", () => {
+        const caseId = parseInt(item.getAttribute("data-case-id"), 10);
+        const endDate = item.getAttribute("data-end-date");
+        
+        if (activeFeCaseId === caseId) {
+          activeFeCaseId = null;
+        } else {
+          activeFeCaseId = caseId;
+          activeFe1rCaseId = null; // Clear 1r active case
+        }
+        
+        // Re-render both options to update active class and apply cell highlight
+        updateFeOptions(weeks);
+        updateFe1rOptions(weeks);
+
+        // If a new case was activated and it has a date, scroll to it
+        if (activeFeCaseId === caseId && endDate) {
+          setTimeout(() => {
+            const cell = document.querySelector(`.date-cell[data-date="${endDate}"]`);
+            if (cell) {
+              cell.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          }, 50);
+        }
+      });
+    });
+  }
+
+  function updateFe1rOptions(weeks) {
+    const container = document.getElementById("fe-1r-options-list");
+    if (!container) return;
+
+    const cases = [
+      {
+        id: 1,
+        title: "1. 8h/dia (13 sessions)",
+        desc: "Comença en data d'inici FE (1r).",
+        hoursPerDay: 8
+      },
+      {
+        id: 2,
+        title: "2. 7h/dia (15 sessions)",
+        desc: "Comença en data d'inici FE (1r).",
+        hoursPerDay: 7
+      }
+    ];
+
+    cases.forEach(c => {
+      c.endDateStr = calculateFe1rEndDate(weeks, c.hoursPerDay);
+      c.friendlyDate = formatFriendlyFeDate(c.endDateStr);
+    });
+
+    // Sort cases by endDateStr ascending
+    cases.sort((a, b) => {
+      if (!a.endDateStr) return 1;
+      if (!b.endDateStr) return -1;
+      return a.endDateStr.localeCompare(b.endDateStr);
+    });
+
+    let html = "";
+    cases.forEach(c => {
+      const isActive = c.id === activeFe1rCaseId;
+      html += `
+        <div class="fe-option-item ${isActive ? 'active' : ''}" data-case-id="${c.id}" data-end-date="${c.endDateStr || ''}" style="cursor: pointer;">
+          <div class="fe-option-title">${c.title}</div>
+          <div class="fe-option-date-container">
+            <span class="fe-option-desc">${c.desc}</span>
+            <span class="fe-option-date">${c.friendlyDate}</span>
+          </div>
+        </div>
+      `;
+    });
+
+    container.innerHTML = html;
+
+    // If there is an active case, highlight its cell
+    if (activeFe1rCaseId !== null) {
+      document.querySelectorAll(".date-cell").forEach(cell => {
+        cell.classList.remove("highlight-fe-end");
+      });
+      const activeCase = cases.find(c => c.id === activeFe1rCaseId);
+      if (activeCase && activeCase.endDateStr) {
+        const cell = document.querySelector(`.date-cell[data-date="${activeCase.endDateStr}"]`);
+        if (cell) {
+          cell.classList.add("highlight-fe-end");
+        }
+      }
+    }
+
+    // Attach click events
+    container.querySelectorAll(".fe-option-item").forEach(item => {
+      item.addEventListener("click", () => {
+        const caseId = parseInt(item.getAttribute("data-case-id"), 10);
+        const endDate = item.getAttribute("data-end-date");
+        
+        if (activeFe1rCaseId === caseId) {
+          activeFe1rCaseId = null;
+        } else {
+          activeFe1rCaseId = caseId;
+          activeFeCaseId = null; // Clear 2n active case
+        }
+        
+        // Re-render both options to update active class and apply cell highlight
+        updateFeOptions(weeks);
+        updateFe1rOptions(weeks);
+
+        // If a new case was activated and it has a date, scroll to it
+        if (activeFe1rCaseId === caseId && endDate) {
+          setTimeout(() => {
+            const cell = document.querySelector(`.date-cell[data-date="${endDate}"]`);
+            if (cell) {
+              cell.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          }, 50);
+        }
+      });
+    });
+  }
+
   // Render totalizador de la interfaz
   function renderAll() {
     const computedData = getComputedCalendarData();
     updateLectiveStats(computedData);
     renderLocalHolidaysList();
+    updateFeOptions(computedData);
+    updateFe1rOptions(computedData);
     renderCalendarGrid(computedData);
   }
 

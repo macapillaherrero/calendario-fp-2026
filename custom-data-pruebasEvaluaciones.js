@@ -249,7 +249,7 @@ window.CUSTOM_PUBLISHED_DATA = {
       "holidayName": ""
     },
     "2027-03-04": {
-      "dayType": "inici-fe",
+      "dayType": "exams",
       "holidayName": ""
     },
     "2027-03-01": {
@@ -261,7 +261,7 @@ window.CUSTOM_PUBLISHED_DATA = {
       "holidayName": ""
     },
     "2027-03-03": {
-      "dayType": "exams",
+      "dayType": "inici-fe",
       "holidayName": ""
     },
     "2027-03-05": {
@@ -296,12 +296,16 @@ window.CUSTOM_PUBLISHED_DATA = {
       "dayType": "lectiu",
       "holidayName": ""
     },
-    "2027-05-28": {
+    "2027-05-26": {
       "dayType": "inici-fe",
       "holidayName": ""
     },
     "2027-05-27": {
-      "dayType": "inici-fe",
+      "dayType": "lectiu",
+      "holidayName": ""
+    },
+    "2027-05-28": {
+      "dayType": "lectiu",
       "holidayName": ""
     },
     "2027-05-31": {
