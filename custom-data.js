@@ -108,19 +108,19 @@ window.CUSTOM_PUBLISHED_DATA = {
       "concept": "",
       "type": "",
       "quinzena1": "7",
-      "quinzena2": "8"
+      "quinzena2": "7"
     },
     "2027-01-18": {
       "concept": "",
       "type": "",
       "quinzena1": "8",
-      "quinzena2": "9"
+      "quinzena2": "8"
     },
     "2027-02-01": {
       "concept": "",
       "type": "",
       "quinzena1": "9",
-      "quinzena2": "10"
+      "quinzena2": "9"
     },
     "2027-01-11": {
       "concept": "",
@@ -144,7 +144,7 @@ window.CUSTOM_PUBLISHED_DATA = {
       "concept": "",
       "type": "",
       "quinzena1": "Nadal",
-      "quinzena2": "8 / Nadal"
+      "quinzena2": "Nadal"
     },
     "2026-12-28": {
       "concept": "",
@@ -368,15 +368,11 @@ window.CUSTOM_PUBLISHED_DATA = {
       "dayType": "lectiu",
       "holidayName": ""
     },
-    "2027-05-26": {
-      "dayType": "inici-fe",
-      "holidayName": ""
-    },
-    "2027-05-27": {
+    "2027-05-28": {
       "dayType": "lectiu",
       "holidayName": ""
     },
-    "2027-05-28": {
+    "2027-05-27": {
       "dayType": "lectiu",
       "holidayName": ""
     },
@@ -446,6 +442,18 @@ window.CUSTOM_PUBLISHED_DATA = {
     },
     "2027-06-25": {
       "dayType": "exams",
+      "holidayName": ""
+    },
+    "2027-06-10": {
+      "dayType": "lectiu",
+      "holidayName": ""
+    },
+    "2027-06-11": {
+      "dayType": "lectiu",
+      "holidayName": ""
+    },
+    "2027-05-26": {
+      "dayType": "inici-fe",
       "holidayName": ""
     }
   }

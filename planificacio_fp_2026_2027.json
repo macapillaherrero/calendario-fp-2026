@@ -320,7 +320,7 @@
       "holidayName": ""
     },
     "2027-03-04": {
-      "dayType": "inici-fe",
+      "dayType": "exams",
       "holidayName": ""
     },
     "2027-03-01": {
@@ -332,7 +332,7 @@
       "holidayName": ""
     },
     "2027-03-03": {
-      "dayType": "exams",
+      "dayType": "inici-fe",
       "holidayName": ""
     },
     "2027-03-05": {
@@ -368,11 +368,11 @@
       "holidayName": ""
     },
     "2027-05-28": {
-      "dayType": "inici-fe",
+      "dayType": "lectiu",
       "holidayName": ""
     },
     "2027-05-27": {
-      "dayType": "inici-fe",
+      "dayType": "lectiu",
       "holidayName": ""
     },
     "2027-05-31": {
@@ -441,6 +441,18 @@
     },
     "2027-06-25": {
       "dayType": "exams",
+      "holidayName": ""
+    },
+    "2027-06-10": {
+      "dayType": "lectiu",
+      "holidayName": ""
+    },
+    "2027-06-11": {
+      "dayType": "lectiu",
+      "holidayName": ""
+    },
+    "2027-05-26": {
+      "dayType": "inici-fe",
       "holidayName": ""
     }
   }
