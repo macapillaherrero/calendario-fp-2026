@@ -1553,6 +1553,7 @@ window.CUSTOM_PUBLISHED_DATA = ${JSON.stringify(dataObj, null, 2)};
         const parsed = JSON.parse(event.target.result);
         appState = {
           currentView: parsed.currentView || "unified",
+          shadingBase: parsed.shadingBase || "1er",
           localHolidays: parsed.localHolidays || {},
           weeklyEvents: parsed.weeklyEvents || {},
           dayOverrides: parsed.dayOverrides || {}
@@ -1569,6 +1570,11 @@ window.CUSTOM_PUBLISHED_DATA = ${JSON.stringify(dataObj, null, 2)};
             btn.classList.remove("active");
           }
         });
+
+        // Sincronizar radio buttons de proyección con el estado importado
+        const baseVal = appState.shadingBase || "1er";
+        const activeRadio = document.querySelector(`input[name='shading-base'][value='${baseVal}']`);
+        if (activeRadio) activeRadio.checked = true;
         
         alert("Planificació importada correctament!");
       } catch (err) {
@@ -1630,7 +1636,8 @@ window.CUSTOM_PUBLISHED_DATA = ${JSON.stringify(dataObj, null, 2)};
   loadStateFromLocalStorage();
   
   // Sincronizar radio buttons de proyección con el estado cargado
-  const activeRadio = document.querySelector(`input[name='shading-base'][value='${appState.shadingBase}']`);
+  const baseVal = appState.shadingBase || "1er";
+  const activeRadio = document.querySelector(`input[name='shading-base'][value='${baseVal}']`);
   if (activeRadio) activeRadio.checked = true;
 
   renderAll();

@@ -95,7 +95,7 @@ window.CUSTOM_PUBLISHED_DATA = {
     "2026-10-05": {
       "concept": "Avaluació Inicial",
       "type": "avaluacions",
-      "quinzena1": "2",
+      "quinzena1": "3",
       "quinzena2": "3"
     },
     "2026-12-07": {
@@ -203,19 +203,19 @@ window.CUSTOM_PUBLISHED_DATA = {
     "2026-09-21": {
       "concept": "",
       "type": "",
-      "quinzena1": "1",
+      "quinzena1": "2",
       "quinzena2": "2"
     },
     "2026-10-19": {
       "concept": "",
       "type": "",
-      "quinzena1": "3",
+      "quinzena1": "4",
       "quinzena2": "4"
     },
     "2026-11-02": {
       "concept": "",
       "type": "",
-      "quinzena1": "4",
+      "quinzena1": "5",
       "quinzena2": "5"
     }
   },
@@ -289,7 +289,7 @@ window.CUSTOM_PUBLISHED_DATA = {
       "holidayName": ""
     },
     "2026-12-04": {
-      "dayType": "avaluacions",
+      "dayType": "lectiu",
       "holidayName": ""
     },
     "2027-02-15": {

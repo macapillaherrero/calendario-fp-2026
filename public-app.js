@@ -1292,7 +1292,8 @@ document.addEventListener("DOMContentLoaded", () => {
     activeViewBtn.classList.add("active");
   }
   
-  const activeRadio = document.querySelector(`input[name='shading-base'][value='${appState.shadingBase}']`);
+  const baseVal = appState.shadingBase || "1er";
+  const activeRadio = document.querySelector(`input[name='shading-base'][value='${baseVal}']`);
   if (activeRadio) activeRadio.checked = true;
 
   renderAll();
