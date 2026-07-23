@@ -105,22 +105,22 @@ window.CUSTOM_PUBLISHED_DATA = {
       "quinzena2": "7"
     },
     "2027-01-04": {
-      "concept": "",
+      "concept": "NADAL",
       "type": "",
       "quinzena1": "7",
-      "quinzena2": "7"
+      "quinzena2": "8"
     },
     "2027-01-18": {
       "concept": "",
       "type": "",
       "quinzena1": "8",
-      "quinzena2": "8"
+      "quinzena2": "9"
     },
     "2027-02-01": {
       "concept": "",
       "type": "",
       "quinzena1": "9",
-      "quinzena2": "9"
+      "quinzena2": "10"
     },
     "2027-01-11": {
       "concept": "",
@@ -141,25 +141,25 @@ window.CUSTOM_PUBLISHED_DATA = {
       "quinzena2": "10"
     },
     "2026-12-21": {
-      "concept": "",
+      "concept": "NADAL",
       "type": "",
-      "quinzena1": "Nadal",
-      "quinzena2": "Nadal"
+      "quinzena1": "7",
+      "quinzena2": "8"
     },
     "2026-12-28": {
-      "concept": "",
+      "concept": "NADAL",
       "type": "",
-      "quinzena1": "Nadal",
-      "quinzena2": "Nadal"
+      "quinzena1": "7",
+      "quinzena2": "8"
     },
     "2027-03-15": {
-      "concept": "",
+      "concept": "FALLAS",
       "type": "",
       "quinzena1": "11",
       "quinzena2": "FE"
     },
     "2027-04-05": {
-      "concept": "",
+      "concept": "PASQUA",
       "type": "",
       "quinzena1": "12",
       "quinzena2": "FE"
@@ -217,6 +217,18 @@ window.CUSTOM_PUBLISHED_DATA = {
       "type": "",
       "quinzena1": "5",
       "quinzena2": "5"
+    },
+    "2027-03-22": {
+      "concept": "PASQUA",
+      "type": "",
+      "quinzena1": "11",
+      "quinzena2": "FE"
+    },
+    "2027-03-29": {
+      "concept": "PASQUA",
+      "type": "",
+      "quinzena1": "11",
+      "quinzena2": "FE"
     }
   },
   "dayOverrides": {
