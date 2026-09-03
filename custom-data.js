@@ -15,7 +15,7 @@ window.CUSTOM_PUBLISHED_DATA = {
       "quinzena2": "Ex 2n"
     },
     "2026-11-23": {
-      "concept": "Ex. 1r (2na Avaluació)",
+      "concept": "Ex. 1r (1era Avaluació)",
       "type": "exams",
       "quinzena1": "Ex 1er",
       "quinzena2": "6"
@@ -51,7 +51,7 @@ window.CUSTOM_PUBLISHED_DATA = {
       "quinzena2": "FE"
     },
     "2027-05-24": {
-      "concept": "FE 1r",
+      "concept": "FE 1r / Avaluació Ciber",
       "type": "fe-1r",
       "quinzena1": "15",
       "quinzena2": "FE"
@@ -69,7 +69,7 @@ window.CUSTOM_PUBLISHED_DATA = {
       "quinzena2": "FE"
     },
     "2027-06-14": {
-      "concept": "EX. Extr. 2N / Av. Ord. 1r",
+      "concept": "EX. Extr. 2N / Av. Ord. 1r / Extraordinaria Ceti",
       "type": "exams",
       "quinzena1": "FE",
       "quinzena2": "FE"
@@ -129,8 +129,8 @@ window.CUSTOM_PUBLISHED_DATA = {
       "quinzena2": "8"
     },
     "2027-01-25": {
-      "concept": "",
-      "type": "",
+      "concept": "Avaluació Ciber",
+      "type": "avaluacions",
       "quinzena1": "8",
       "quinzena2": "9"
     },
@@ -385,7 +385,7 @@ window.CUSTOM_PUBLISHED_DATA = {
       "holidayName": ""
     },
     "2027-05-27": {
-      "dayType": "lectiu",
+      "dayType": "avaluacions",
       "holidayName": ""
     },
     "2027-05-31": {
@@ -466,6 +466,18 @@ window.CUSTOM_PUBLISHED_DATA = {
     },
     "2027-05-26": {
       "dayType": "inici-fe",
+      "holidayName": ""
+    },
+    "2026-10-08": {
+      "dayType": "avaluacions",
+      "holidayName": ""
+    },
+    "2027-01-28": {
+      "dayType": "avaluacions",
+      "holidayName": ""
+    },
+    "2027-01-26": {
+      "dayType": "lectiu",
       "holidayName": ""
     }
   }
