@@ -87,7 +87,7 @@ window.CUSTOM_PUBLISHED_DATA = {
       "quinzena2": "FE"
     },
     "2026-09-07": {
-      "concept": "",
+      "concept": "Inici de curs",
       "type": "",
       "quinzena1": "1",
       "quinzena2": "1"
@@ -229,6 +229,12 @@ window.CUSTOM_PUBLISHED_DATA = {
       "type": "",
       "quinzena1": "11",
       "quinzena2": "FE"
+    },
+    "2026-09-28": {
+      "concept": "Inici de curs de Ciber",
+      "type": "",
+      "quinzena1": "2",
+      "quinzena2": "2"
     }
   },
   "dayOverrides": {
@@ -478,6 +484,10 @@ window.CUSTOM_PUBLISHED_DATA = {
     },
     "2027-01-26": {
       "dayType": "lectiu",
+      "holidayName": ""
+    },
+    "2026-10-01": {
+      "dayType": "inici-fi",
       "holidayName": ""
     }
   }
